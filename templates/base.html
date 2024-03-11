@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      a {
+        color: black;
+        transition: font-size 0.6s ease;
+        text-decoration: none;
+      }
+      a:hover {
+        color: rgb(94, 90, 90);
+        font-size: 27px;
+      }
+      h2 {
+        color: white;
+        transition: font-size 0.6s ease;
+        font-size: 40px;
+      }
+      h2:hover {
+        color: rgba(255, 255, 255, 0.626);
+        font-size: 55px;
+      }
+      button{
+        width: 300px;
+        height: 50px;
+      }
+    </style>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <header>
+      <!-- style="display: flex; justify-content: center; position: sticky; background-color: black;" -->
+      <nav
+        class="navbar navbar-dark bg-dark"
+        style="display: flex; justify-content: center"
+      >
+        <a
+          class="navbar-brand"
+          href="https://ru.wikipedia.org/wiki/Солнечная_система"
+          target="_blank"
+          ><h2>Solar System</h2></a
+        >
+      </nav>
+    </header>
+    <main role="main" class="container">{%block content%}{%endblock%}</main>
+    <script>
+      $(document).ready(() => {
+        initNavbarScroll();
+      });
+
+      function initNavbarScroll() {
+        const navbar = $("#navbar");
+        const navbarTopOffset = navbar.offset().top;
+        const stickedCls = "navbarSticked";
+
+        $(window).scroll(() => {
+          const isSticked = navbar.hasClass(stickedCls);
+          const windowScrolledDown = $(window).scrollTop() > navbarTopOffset;
+
+          if (windowScrolledDown) {
+            if (!isSticked) {
+              navbar.addClass(stickedCls);
+            }
+          } else {
+            if (isSticked) {
+              navbar.removeClass(stickedCls);
+            }
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
